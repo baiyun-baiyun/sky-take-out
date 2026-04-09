@@ -21,11 +21,13 @@ import java.util.Map;
 /**
  * 员工管理
  */
-@RestController
+@RestController//@RestController=@Controoler（告知这是个MVC类）+@ResponseBody（规定方法直接返回数据）
 @RequestMapping("/admin/employee")
-@Slf4j
+@Slf4j//自动生成日志
 public class EmployeeController {
 
+    //@Autowired自动创建对象，等效于EmployeeService employeeService=new EmployeeServiceImp
+    //这里是多态
     @Autowired
     private EmployeeService employeeService;
     @Autowired
@@ -37,7 +39,7 @@ public class EmployeeController {
      * @param employeeLoginDTO
      * @return
      */
-    @PostMapping("/login")
+    @PostMapping("/login")//接受前端对应地址的请求，为该方法绑定前端请求
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
 

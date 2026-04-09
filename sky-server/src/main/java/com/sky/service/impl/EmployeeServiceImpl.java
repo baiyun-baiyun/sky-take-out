@@ -39,7 +39,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         //密码比对
-        // TODO 后期需要进行md5加密，然后再进行比对
+        // 将前端传进来的password进行md5DigestAsHex加密并重新赋值给password变量、
+        password=DigestUtils.md5DigestAsHex(password.getBytes());
+        //password变量调用equis方法比对变量，调用getPassword获得employee表里的密码进行比对
         if (!password.equals(employee.getPassword())) {
             //密码错误
             throw new PasswordErrorException(MessageConstant.PASSWORD_ERROR);
